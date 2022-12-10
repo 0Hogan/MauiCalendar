@@ -1,41 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mauiCalendar.MainPage">
+             x:Class="mauiCalendar.MainPage"
+             xmlns:viewmodel="clr-namespace:mauiCalendar.ViewModel"
+             x:DataType="viewmodel:CalendarViewModel"
+             xmlns:model="clr-namespace:mauiCalendar.Models">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+    <Grid Padding="3" RowDefinitions="45,20,auto" ColumnDefinitions="*,*,*,*,*,*,*">
+        
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="PREVIOUS MONTH" TextColor="White"  VerticalOptions="Center"/>
+        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="Month is ___" HorizontalOptions="Center"/>
+        <Button Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="NEXT MONTH" TextColor="White"  VerticalOptions="Center"/>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Monday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" Text="Tuesday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" Text="Wednesday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="3" Text="Thursday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="4" Text="Friday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="5" Text="Saturday"/>
+        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="6" Text="Sunday"/>
+
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="7" ItemsSource="{Binding CalDays}">
+
+
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                HorizontalItemSpacing="3"
+                Orientation="Vertical"
+                Span="7"
+                VerticalItemSpacing="10"
+                 />
+            
+        </CollectionView.ItemsLayout>
+               
+        <CollectionView.ItemTemplate>
+                           
+            <DataTemplate x:DataType="{x:Type viewmodel:CalendarDays}">
+
+               
+
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                            
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Border Stroke="black" StrokeThickness="3">
+
+
+                    <Label HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Text="{Binding DayNumber }"/>
+
+
+                </Border>
+
+                    <ListView Grid.Row="1"  ItemsSource="{Binding Events}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type model:CalendarEvent}">
+                                <ViewCell>
+                                    <Grid Padding="2" BackgroundColor="LightGrey">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                    </Grid>
+                                    
+                                    <Label BackgroundColor="LightGrey" Grid.Row="0" Grid.Column="0" Text="{Binding Name}" />
+
+                                </ViewCell>
+                            </DataTemplate>
+                            
+                        </ListView.ItemTemplate>
+                        
+                        
+                    </ListView>
+                                  
+                   
+                    
+                </Grid>
+            
+                
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+    </Grid>
+
 
 </ContentPage>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mauiCalendar.Data
+namespace mauiCalendar.Models
 {
     public class CalendarEvent
     {

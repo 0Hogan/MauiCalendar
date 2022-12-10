@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using mauiCalendar.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace mauiCalendar.Data
             var result = await Database.CreateTableAsync<CalendarEvent>();
         }
 
-        // Fetch all previous calculations from the database. cRud
+        // Fetch all previous calendar events from the database. cRud
         public async Task<List<CalendarEvent>> GetItemsAsync()
         {
             await Init();
