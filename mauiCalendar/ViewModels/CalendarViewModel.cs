@@ -12,12 +12,12 @@ namespace mauiCalendar.ViewModel
 {
     public partial class CalendarViewModel : ObservableObject
     {
-        CalendarDatabase CalDatabase = new();
+        CalendarDatabase calendarDatabase = new();
 
-
-        // List of events with which to track the previously calculated expressions.
+        // List of events with which to track the all the events currently scheduled.
         [ObservableProperty]
         ObservableCollection<CalendarEvent> calEvents = new();
+
         [ObservableProperty]
         ObservableCollection<CalendarDays> calDays = new();
 
@@ -33,14 +33,13 @@ namespace mauiCalendar.ViewModel
 
         public CalendarViewModel()
         {
-            //       PreviousCalculations = new();
-            CalendarEvent testing = new CalendarEvent();
+            CalendarEvent testing = new();
             testing.Name = "hello world";
             calEvents.Add(testing);
             int i = 0;
             CalendarDays CalDay = new CalendarDays();
 
-            CalendarEvent[] calendarEvents = new[] { testing, testing,testing };
+            CalendarEvent[] calendarEvents = new[] { testing, testing, testing };
 
             //need to create the current month of days? then add into the days the event objects? 
             for (i = 0; i < 32; i++) {
@@ -60,12 +59,8 @@ namespace mauiCalendar.ViewModel
                 CalDays.Add(CalDay);
             }
 
-
-            // Load any calculation history from previous sessions.
+            // Load all previously scheduled events.
             LoadHistoryAsync();
-
-            //    lastCalculation = "0";
-            //       lastResult = "0";
         }
 
         // Adds the last expression and its answer to previousCalculations.
@@ -76,7 +71,7 @@ namespace mauiCalendar.ViewModel
             CalendarEvent input = new();
 
 
-            await CalDatabase.SaveItemAsync(input);
+            await calendarDatabase.SaveItemAsync(input);
 
             //        LastCalculation = output;
 
@@ -84,24 +79,20 @@ namespace mauiCalendar.ViewModel
 
         async void LoadHistoryAsync()
         {
-            //        var previousCalculationsList = await previousCalculationsDatabase.GetItemsAsync();
+            var calendarEvents = await calendarDatabase.GetItemsAsync();
 
-            //        foreach (var calculation in previousCalculationsList)
+            foreach (var calendarEvent in calendarEvents)
             {
-                //           previousCalculations.Add(calculation.Calculation);
+                // Add the events in chronological order.
             }
-            //        dbHistoryIsLoaded = true;
+            
         }
-
 
 
         [RelayCommand]
         async void ClearCompleteCalendarAsync()
         {
-            //        dbHistoryIsLoaded = false;
-            await CalDatabase.DeleteHistoryAsync();
-            //       PreviousCalculations?.Clear();
-            //        dbHistoryIsLoaded = true;
+            await calendarDatabase.DeleteHistoryAsync();
         }
 
     }

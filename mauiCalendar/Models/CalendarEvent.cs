@@ -9,23 +9,23 @@ namespace mauiCalendar.Models
 {
     public class CalendarEvent
     {
-        int id = 0;                 // The unique id of the event.
-        string name = "Untitled";   // The name of the event.
-        DateTime startTime;         // The start time/day of the event.
-        DateTime endTime;           // The end time/day of the event.
-        string location = "";       // The location associated with the event.
-        string notes = "";          // Any notes associated with the event.
-        int categoryId = 0;         // The id of the group with which the event is associated (e.x. family, work, school, etc.)
+        int id = 0;
+        string name = "Untitled";
+        DateTime startTime;
+        DateTime endTime;
+        string location = "";
+        string notes = "";
+        int categoryId = 0;        
 
 
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string Location { get; set; }
-        public string Notes { get; set; }
-        public int CategoryId { get; set; }
+        public int Id { get; set; } // The unique id of the event.
+        public string Name { get; set; } // The name of the event.
+        public DateTime StartTime { get; set; } // The start time/day of the event.
+        public DateTime EndTime { get; set; } // The end time/day of the event.
+        public string Location { get; set; } // The location associated with the event.
+        public string Notes { get; set; } // Any notes associated with the event.
+        public int CategoryId { get; set; } // The id of the group with which the event is associated (e.x. family, work, school, etc.)
 
 
         // C-tor.
