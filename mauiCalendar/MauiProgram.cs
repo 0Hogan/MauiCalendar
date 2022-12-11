@@ -17,6 +17,7 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<CalendarViewModel>();
 		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<CalendarListViewPage>();
 
 
 		return builder.Build();

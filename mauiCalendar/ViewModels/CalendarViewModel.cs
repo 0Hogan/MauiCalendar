@@ -50,6 +50,14 @@ namespace mauiCalendar.ViewModel
             calendarEvents.Add(test2);
             calendarEvents.Add(test3);
 
+
+            CalendarYear tester = new(2022);
+            calendarYears.Add(tester);
+            calendarYears[0].AddEvent(test1);
+            calendarYears[0].AddEvent(test2);
+            calendarYears[0].AddEvent(test3);
+
+
             /******** End Testing Data ********/
 
         }

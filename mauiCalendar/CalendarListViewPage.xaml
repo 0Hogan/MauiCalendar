@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mauiCalendar.CalendarListViewPage"
+             Title="CalendarListViewPage"
+             xmlns:model="clr-namespace:mauiCalendar.Models"
+             x:DataType="viewmodel:CalendarViewModel"
+             xmlns:viewmodel="clr-namespace:mauiCalendar.ViewModel">
+    
+    <CollectionView ItemsSource="{Binding CalendarEvents}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:CalendarEvent">
+                <HorizontalStackLayout Padding="10">
+
+                    <Label Text="{Binding Name}" Padding="3" />
+                    <Label Text="--" />
+                    <Label VerticalOptions="Center" Text="{Binding StartTime}" />
+                    <Label Text="--" />
+                    <Label Text="{Binding EndTime}" />
+                    <Label Text="--" />
+                    <Label Text="{Binding Notes}" />
+
+
+
+
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
+</ContentPage>

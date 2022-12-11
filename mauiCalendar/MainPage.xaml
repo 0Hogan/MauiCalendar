@@ -7,97 +7,158 @@
              xmlns:model="clr-namespace:mauiCalendar.Models">
 
 
-    <Grid Padding="3" RowDefinitions="45,20,auto" ColumnDefinitions="*,*,*,*,*,*,*">
-        
 
-
-        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="PREVIOUS MONTH" TextColor="White"  VerticalOptions="Center"/>
-        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="Month is ___" HorizontalOptions="Center"/>
-        <Button Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="NEXT MONTH" TextColor="White"  VerticalOptions="Center"/>
-
-
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Monday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" Text="Tuesday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" Text="Wednesday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="3" Text="Thursday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="4" Text="Friday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="5" Text="Saturday"/>
-        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="6" Text="Sunday"/>
-
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="7" ItemsSource="{Binding CalendarYears}">
+    <Grid RowDefinitions="*" ColumnDefinitions="*" BackgroundColor="LightGoldenrodYellow" >
 
 
 
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout
+        <CollectionView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding CalendarYears}" VerticalScrollBarVisibility="Always">
+            
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
                 HorizontalItemSpacing="3"
                 Orientation="Vertical"
-                Span="7"
-                VerticalItemSpacing="10"
-                 />
-            
-        </CollectionView.ItemsLayout>
-               
-        <CollectionView.ItemTemplate>
-                           
-            <DataTemplate x:DataType="{x:Type model:CalendarDay}">
-
-               
-
-                <Grid Padding="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                            
-                    </Grid.ColumnDefinitions>
-
-
-
-                    <Border Stroke="black" StrokeThickness="3">
-
-
-                    <Label HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Text="{Binding DayNumber }"/>
-
-
-                </Border>
-
-                    <ListView Grid.Row="1"  ItemsSource="{Binding Events}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type model:CalendarEvent}">
-                                <ViewCell>
-                                    <Grid Padding="2" BackgroundColor="LightGrey">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="20"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                    </Grid>
-                                    
-                                    <Label BackgroundColor="LightGrey" Grid.Row="0" Grid.Column="0" Text="{Binding Name}" />
-
-                                </ViewCell>
-                            </DataTemplate>
-                            
-                        </ListView.ItemTemplate>
-                        
-                        
-                    </ListView>
-                                  
-                   
-                    
-                </Grid>
-            
                 
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+                VerticalItemSpacing="10"
+                />
 
-    </CollectionView>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type model:CalendarYear}">
 
+
+
+                    <Grid RowDefinitions="75,*" ColumnDefinitions="*" >
+
+                        <Label Grid.Row="0" Text="{Binding Year }" HorizontalOptions="Center" FontSize="Header"/>
+
+
+                        <CollectionView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding CalendarMonths }" VerticalScrollBarVisibility="Never">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout
+                                    HorizontalItemSpacing="3"
+                                    Orientation="Vertical"
+                                 
+                                    VerticalItemSpacing="20"
+                                 />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type model:CalendarMonth}">
+
+
+
+                                    <Grid Padding="3" RowDefinitions="75,20,630" ColumnDefinitions="*,*,*,*,*,*,*" BackgroundColor="AntiqueWhite"   >
+
+
+
+
+                                        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding Name}" HorizontalOptions="Center" FontSize="Header" />
+
+
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Monday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" Text="Tuesday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" Text="Wednesday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="3" Text="Thursday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="4" Text="Friday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="5" Text="Saturday"/>
+                                        <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="6" Text="Sunday"/>
+
+                                        <CollectionView Grid.Row="2" Grid.ColumnSpan="7" ItemsSource="{Binding CalendarDays}">
+
+
+
+                                            <CollectionView.ItemsLayout>
+                                                <GridItemsLayout
+                                                    HorizontalItemSpacing="3"
+                                                    Orientation="Vertical"
+                                                    Span="7"
+                                                    VerticalItemSpacing="10"
+                                                 />
+
+                                            </CollectionView.ItemsLayout>
+
+                                            <CollectionView.ItemTemplate>
+
+                                                <DataTemplate x:DataType="{x:Type model:CalendarDay}">
+
+
+
+                                                    <Grid Padding="10" BackgroundColor="LightBlue">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+
+                                                        </Grid.ColumnDefinitions>
+
+
+
+                                                        
+
+
+                                                            <Label BackgroundColor="LightBlue" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" Text="{Binding Day }"/>
+
+
+                                                        
+
+                                                        <CollectionView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding CalendarEvents}">
+                                                            <CollectionView.ItemsLayout>
+                                                                <GridItemsLayout
+                                                                        HorizontalItemSpacing="3"
+                                                                        Orientation="Vertical"
+                                                                        VerticalItemSpacing="10"/>
+                                                            </CollectionView.ItemsLayout>
+                                                            <CollectionView.ItemTemplate>
+                                                                <DataTemplate x:DataType="{x:Type model:CalendarEvent}">
+
+                                                                    <Grid Padding="2" BackgroundColor="LightGrey">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="20"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                        </Grid.ColumnDefinitions>
+
+                                                                        <Label BackgroundColor="LightGrey" Grid.Row="0" Grid.Column="0" Text="{Binding Name}" />
+                                                                    </Grid>
+
+                                                                </DataTemplate>
+
+                                                            </CollectionView.ItemTemplate>
+
+
+                                                        </CollectionView>
+
+
+
+                                                    </Grid>
+
+
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+
+                                        </CollectionView>
+
+                                    </Grid>
+
+
+
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
+
 
 
 </ContentPage>
