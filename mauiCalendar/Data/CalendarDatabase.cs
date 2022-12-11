@@ -31,7 +31,14 @@ namespace mauiCalendar.Data
         public async Task<List<CalendarEvent>> GetItemsAsync()
         {
             await Init();
-            return await Database.Table<CalendarEvent>().ToListAsync();
+
+            // Query the database to get all the saved events in order of StartTimes.
+            var sortedEvents =  
+                from calendarEvent in Database.Table<CalendarEvent>()
+                orderby calendarEvent.StartTime ascending
+                select calendarEvent;
+
+            return await sortedEvents.ToListAsync();
         }
 
         // Save any modifications to an existing event or add a new event to the database. CrUd
