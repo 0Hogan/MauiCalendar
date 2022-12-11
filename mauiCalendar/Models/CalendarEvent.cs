@@ -9,14 +9,6 @@ namespace mauiCalendar.Models
 {
     public class CalendarEvent
     {
-        int id = 0;
-        string name = "Untitled";
-        DateTime startTime;
-        DateTime endTime;
-        string location = "";
-        string notes = "";
-        int categoryId = 0;        
-
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; } // The unique id of the event.
@@ -43,27 +35,5 @@ namespace mauiCalendar.Models
         {
             //CalendarDatabase.Add(this);
         }
-
-        /* Don't think we need these... We can initialize using an empty CalendarEvent, and then update each field.
-        CalendarEvent(DateTime startTime)
-        {
-            Name = "Untitled"; // Untitled by default.
-            StartTime = startTime; // The one required field.
-            EndTime = startTime + new TimeSpan(hours: 1, minutes: 0, seconds: 0); // By default, initialize the end time to one hour after the start time.
-            Location = "";
-            Notes = "";
-        }
-
-
-        CalendarEvent(string name, DateTime startTime, DateTime endTime, string location, string notes)
-        {
-            Name = name;
-            StartTime = startTime;
-            EndTime = endTime;
-            Location = location;
-            Notes = notes;
-        }
-        */
-
     }
 }

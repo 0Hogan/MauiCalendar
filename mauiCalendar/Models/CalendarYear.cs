@@ -11,7 +11,7 @@ namespace mauiCalendar.Models
         public int Year { get; set; }
         public List<CalendarMonth> CalendarMonths { get; set; }
 
-        public CalendarYear(int year, int numDays)
+        public CalendarYear(int year)
         {
             Year = year;
             CalendarMonths = new();

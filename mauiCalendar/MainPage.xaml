@@ -24,7 +24,7 @@
         <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="5" Text="Saturday"/>
         <Label HorizontalOptions="Center" Grid.Row="1" Grid.Column="6" Text="Sunday"/>
 
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="7" ItemsSource="{Binding CalDays}">
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="7" ItemsSource="{Binding CalendarYears}">
 
 
 
@@ -40,7 +40,7 @@
                
         <CollectionView.ItemTemplate>
                            
-            <DataTemplate x:DataType="{x:Type viewmodel:CalendarDays}">
+            <DataTemplate x:DataType="{x:Type model:CalendarDay}">
 
                
 
