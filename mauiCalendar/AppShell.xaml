@@ -17,4 +17,11 @@
             Route="CalendarListViewPage"
             />
 
+
+    <ShellContent 
+            Title = "Create A New Event"
+            ContentTemplate= "{DataTemplate local:CreateNewEventPage}"
+            Route="CreateNewEventPage"
+            />
+
 </Shell>

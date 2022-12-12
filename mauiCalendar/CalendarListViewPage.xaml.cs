@@ -1,4 +1,7 @@
+using CommunityToolkit.Mvvm.Input;
+using mauiCalendar.Models;
 using mauiCalendar.ViewModel;
+using System.Windows.Input;
 
 namespace mauiCalendar;
 
@@ -9,4 +12,6 @@ public partial class CalendarListViewPage : ContentPage
 		InitializeComponent();
 		BindingContext = vm;
 	}
+
+	
 }

@@ -29,7 +29,7 @@
 
 
 
-                    <Grid RowDefinitions="75,*" ColumnDefinitions="*" >
+                    <Grid RowDefinitions="75,700" ColumnDefinitions="*" >
 
                         <Label Grid.Row="0" Text="{Binding Year }" HorizontalOptions="Center" FontSize="Header"/>
 

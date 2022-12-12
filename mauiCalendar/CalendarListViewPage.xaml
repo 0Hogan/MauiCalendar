@@ -2,30 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mauiCalendar.CalendarListViewPage"
-             Title="CalendarListViewPage"
+             Title="Calendar List View"
              xmlns:model="clr-namespace:mauiCalendar.Models"
              x:DataType="viewmodel:CalendarViewModel"
-             xmlns:viewmodel="clr-namespace:mauiCalendar.ViewModel">
-    
-    <CollectionView ItemsSource="{Binding CalendarEvents}">
+             xmlns:viewmodel="clr-namespace:mauiCalendar.ViewModel"
+             >
+
+    <VerticalStackLayout>
+
+        <Button Text="Clear Calendar" Command="{Binding ClearCompleteCalendarAsyncCommand}"/>
+        
+
+        <CollectionView ItemsSource="{Binding CalendarEvents}" >
+        
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:CalendarEvent">
-                <HorizontalStackLayout Padding="10">
+            <DataTemplate x:DataType="model:CalendarEvent" x:Name="CalendarEvent">
+                <Grid RowDefinitions="*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,* " Padding="15" BackgroundColor="LightBlue" x:Name="calendarEvent">
+                    
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"  Padding="15" />
+                        <Label Grid.Row="0" Grid.Column="1" Text=" -- " />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding StartTime}"  Padding="15"/>
+                        <Label Grid.Row="0" Grid.Column="3" Text=" -- " />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding EndTime}"  Padding="15"/>
+                        <Label Grid.Row="0" Grid.Column="5" Text=" -- " />
+                        <Label Grid.Row="0" Grid.Column="6" Text="{Binding Location}"  Padding="15"/>
+                        <Label Grid.Row="0" Grid.Column="7" Text=" -- " />
+                        <Label Grid.Row="0" Grid.Column="8" Text="{Binding Notes}"  Padding="15"/>
+                        <Label Grid.Row="0" Grid.Column="9" Text=" -- " />
+                        <Label Grid.Row="0" Grid.Column="10" Text="{Binding CategoryId}" Padding="15"/>
 
-                    <Label Text="{Binding Name}" Padding="3" />
-                    <Label Text="--" />
-                    <Label VerticalOptions="Center" Text="{Binding StartTime}" />
-                    <Label Text="--" />
-                    <Label Text="{Binding EndTime}" />
-                    <Label Text="--" />
-                    <Label Text="{Binding Notes}" />
+
+                        <Button Grid.Row="0" Grid.Column="11" Text="Delete Event" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}, Path=RemoveEventCommand}" CommandParameter="{Binding .}" />
 
 
-
-
-                </HorizontalStackLayout>
+                    </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
     
+    </VerticalStackLayout>
 </ContentPage>

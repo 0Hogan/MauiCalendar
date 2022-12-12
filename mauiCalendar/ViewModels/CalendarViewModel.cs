@@ -64,7 +64,7 @@ namespace mauiCalendar.ViewModel
 
         // Add an event.
         [RelayCommand]
-        async void AddEvent(CalendarEvent calendarEvent)
+        public async void AddEvent(CalendarEvent calendarEvent)
         {
             await calendarDatabase.SaveItemAsync(calendarEvent);
             calendarEvents.Add(calendarEvent);
@@ -106,6 +106,7 @@ namespace mauiCalendar.ViewModel
             calendarYears[indexForInsertion].AddEvent(calendarEvent);
         }
 
+        [RelayCommand]
         async void RemoveEvent(CalendarEvent calendarEvent)
         {
             await calendarDatabase.DeleteEventAsync(calendarEvent);
