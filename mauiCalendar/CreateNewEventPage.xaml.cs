@@ -23,9 +23,20 @@ public partial class CreateNewEventPage : ContentPage
 		CalendarEvent calendarEvent = new();
 
 		calendarEvent.Name = this.Name.Text ;
-		calendarEvent.StartTime = this.SsTime.Date; //new DateTime(2022, 12, 13, 14, 30, 0);                        //SsTime.; //DateTime.Parse(SsTime.ToString());    // DateTime.Parse(STime.ToString());
 
-		calendarEvent.EndTime = this.EeTime.Date;					//new DateTime(2022, 12, 13, 14, 30, 0);			//EeTime;// DateTime.Parse(EeTime.ToString());	//DateTime.Parse(ETime.ToString());
+		DateTime startingTime = this.SsTime.Date;
+		startingTime = startingTime.AddHours(this.StTime.Time.Hours);
+		startingTime = startingTime.AddMinutes(this.StTime.Time.Minutes);
+
+		calendarEvent.StartTime = startingTime;         //this.SsTime.Date;			//new DateTime(2022, 12, 13, 14, 30, 0);                        //SsTime.; //DateTime.Parse(SsTime.ToString());    // DateTime.Parse(STime.ToString());
+
+        DateTime endingTime = this.EeTime.Date;
+
+		endingTime =	endingTime.AddHours(this.EtTime.Time.Hours);
+        endingTime = endingTime.AddMinutes(this.EtTime.Time.Minutes);
+
+
+        calendarEvent.EndTime = endingTime;					//new DateTime(2022, 12, 13, 14, 30, 0);			//EeTime;// DateTime.Parse(EeTime.ToString());	//DateTime.Parse(ETime.ToString());
 
         calendarEvent.Location = this.Location.Text;
 		calendarEvent.Notes = this.Notes.Text;

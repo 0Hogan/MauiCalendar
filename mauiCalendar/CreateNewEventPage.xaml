@@ -14,11 +14,13 @@
 
         <Label Text="Event Start Time" />
         <DatePicker x:Name="SsTime"/>
+        <TimePicker x:Name="StTime" />
 
         <Label Text="Event End Time" />
        
     
         <DatePicker x:Name="EeTime"/>
+        <TimePicker x:Name="EtTime" />
 
         <Label Text="Event Location" />
         <Entry x:Name="Location"
